@@ -1,12 +1,6 @@
 ﻿using Coco.Core.Entities;
-using Coco.Infraestructure.Data;
 using Coco.Infraestructure.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Coco.Infraestructure.Persistence
 {
@@ -22,7 +16,6 @@ namespace Coco.Infraestructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            new DbInitializer(modelBuilder).Seed();
             modelBuilder.ApplyConfiguration(new ProductEntityConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryEntityConfiguration());
             modelBuilder.ApplyConfiguration(new StockEntityConfiguration());
