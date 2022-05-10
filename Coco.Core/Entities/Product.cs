@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Coco.Core.Entities
 {
-    public class Product
+    public class Product : BaseEntity
     {
         public string Code { get; set; }
         public string Description { get; set; }

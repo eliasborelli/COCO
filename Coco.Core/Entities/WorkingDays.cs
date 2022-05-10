@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Coco.Core.Entities
 {
-    public class WorkingDays
+    public class WorkingDays : BaseEntity
     {
         public bool Monday { get; set; }
         public bool Tuesday { get; set; }
