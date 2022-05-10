@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Coco.Core.Interfaces
 {
-    public interface IProductRepository
+    public interface IProductRepository : IRepository<Product>
     {
         Product GetProductByFilter(string Code, string Description, string Store);
         IEnumerable<Product> GetAllProductsByStore(string id);

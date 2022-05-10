@@ -4,6 +4,7 @@ namespace Coco.Services.Interfaces
 {
     public interface IStoreService
     {
-        IEnumerable<Store> GetStoresByDate(DateTime date);
+        Task<IEnumerable<Store>> GetStoresByDateAsync(DateTime date);
+        Task SetupAsync();
     }
 }
