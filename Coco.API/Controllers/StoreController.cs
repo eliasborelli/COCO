@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Coco.API.Controllers
 {
-    [Route("api/Store")]
+    [Route("api/store")]
     [ApiController]
     public class StoreController : ControllerBase
     {
