@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Coco.Core\Coco.Core.csproj" />
+  </ItemGroup>
+
 </Project>
