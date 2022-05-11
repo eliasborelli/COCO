@@ -17,5 +17,41 @@ namespace Coco.Core.Entities
         public bool Sunday { get; set; }
         public TimeSpan TimeFrom { get; set; }
         public TimeSpan TimeTo { get; set; }
+
+        public List<string> GetCurrentWorkingWeek()
+        {
+            var week = new List<string>();
+            if (Monday)
+            {
+                week.Add("Monday");
+            }
+            if (Tuesday)
+            {
+                week.Add("Tuesday");
+            }
+            if (Wednesday)
+            {
+                week.Add("Wednesday");
+            }
+            if (Thursday)
+            {
+                week.Add("Thursday");
+            }
+            if (Friday)
+            {
+                week.Add("Friday");
+            }
+            if (Saturday)
+            {
+                week.Add("Saturday");
+            }
+            if (Sunday)
+            {
+                week.Add("Sunday");
+            }
+
+            return week;
+        }
+
     }
 }

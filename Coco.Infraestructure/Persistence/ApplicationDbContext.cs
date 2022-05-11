@@ -13,6 +13,11 @@ namespace Coco.Infraestructure.Persistence
         public virtual DbSet<Stock> Stocks { get; set; }
         public virtual DbSet<Store> Stores { get; set; }
         public virtual DbSet<WorkingDays> WorkingDays { get; set; }
+        public virtual DbSet<Voucher> Vaucher { get; set; }
+        public virtual DbSet<VoucherStrategy> VoucherStrategy { get; set; }
+        public virtual DbSet<VoucherConcrete> VoucherConcrete { get; set; }
+        public virtual DbSet<VirtualCart> VirtualCart { get; set; }
+        public virtual DbSet<VirtualProductCart> VirtualProductCart { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
