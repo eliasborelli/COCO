@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Coco.API.Controllers
 {
-    [Route("api/store")]
+    [Route("api/stores")]
     [ApiController]
-    public class StoreController : ControllerBase
+    public class StoresController : ControllerBase
     {
         private readonly IStoreService _storeService;
-        public StoreController(IStoreService storeService)
+        public StoresController(IStoreService storeService)
         {
             _storeService = storeService;
         }
@@ -17,6 +17,7 @@ namespace Coco.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Setup()
         {
+            //await _storeService.GetStoresByDateAsync(new DateTime(2022, 05, 9, 5, 30, 5));
             await _storeService.SetupAsync();
             return NoContent();
         }
