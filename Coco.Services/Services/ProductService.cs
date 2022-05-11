@@ -1,4 +1,5 @@
 ﻿using Coco.Core.Entities;
+using Coco.Core.Interfaces;
 using Coco.Core.Models.Request;
 using Coco.Core.Models.Response;
 using Coco.Services.Interfaces;
@@ -12,19 +13,52 @@ namespace Coco.Services.Services
 {
     public class ProductService : IProductService
     {
-        public IEnumerable<ProductModelResponse> GetAllProducts()
+        private readonly IProductRepository _productRepository;
+        private readonly IRepository<Stock> _stockRepository;
+        private readonly IRepository<Store> _storeRepository;
+        public ProductService(IProductRepository productRepository, IRepository<Stock> stockRepository, IRepository<Store> storeRepository)
         {
-            throw new NotImplementedException();
+            _productRepository = productRepository;
+            _stockRepository = stockRepository;
+            _storeRepository = storeRepository;
         }
 
-        public IEnumerable<Product> GetAllProductsByStore(string id)
+        public async Task<IEnumerable<ProductModelResponse>> GetAllAvailableProducts()
         {
-            throw new NotImplementedException();
+            var stock = await _stockRepository.GetAsync();
+
+            var response = stock.GroupBy(prod => new { prod.Product.Description })
+                .Select(prod => new ProductModelResponse()
+                {
+                    Description = prod.First().Product.Description,
+                    TotalStock = prod.Sum(x=> x.CurrentStock),
+                    Amount = prod.First().Product.Amount
+                }).ToList();
+
+            return response;
         }
 
-        public Product GetProductByFilter(ProductFilter filter)
+        public async Task<IEnumerable<ProductModelResponse>> GetAllProductsByStore(string name)
         {
-            throw new NotImplementedException();
+            var store = await _storeRepository.GetFirstAsync(x => x.Name.Contains(name));
+
+            return store.Stocks.Select(prod => new ProductModelResponse()
+            {
+                Description = prod.Product.Description,
+                Amount = prod.Product.Amount,
+                TotalStock = prod.CurrentStock
+            });
+        }
+
+        public async Task<Product> GetProductByFilter(ProductFilter filter)
+        {
+            Product product = new Product();
+
+            var store = await _storeRepository.GetFirstAsync(x => x.Name.Contains(filter.store));
+
+            var stock = store.Stocks.FirstOrDefault(prod => prod.Product.Description.Contains(filter.Description));
+
+            return (stock is not null) ? stock.Product : product;
         }
     }
 }

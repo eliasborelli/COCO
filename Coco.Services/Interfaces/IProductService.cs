@@ -6,8 +6,8 @@ namespace Coco.Services.Interfaces
 {
     public interface IProductService
     {
-        IEnumerable<ProductModelResponse> GetAllProducts();
-        Product GetProductByFilter(ProductFilter filter);
-        IEnumerable<Product> GetAllProductsByStore(string id);
+        Task<IEnumerable<ProductModelResponse>> GetAllAvailableProducts();
+        Task<Product> GetProductByFilter(ProductFilter filter);
+        Task<IEnumerable<ProductModelResponse>> GetAllProductsByStore(string name);
     }
 }

@@ -11,22 +11,45 @@ namespace Coco.Services.Services
         private readonly IRepository<Product> _productRepository;
         private readonly IRepository<Stock> _stockRepository;
         private readonly IRepository<WorkingDays> _workingDaysRepository;
-        public StoreService(IStoreRepository storeRepository, IRepository<Category> categoryRepository, IRepository<Product> productRepository, IRepository<Stock> stockRepository, IRepository<WorkingDays> workingDaysRepository)
+        private readonly IRepository<Voucher> _voucherRepository;
+        private readonly IRepository<VoucherConcrete> _voucherConcreteRepository;
+        private readonly IRepository<VoucherStrategy> _voucherStrategyRepository;
+
+
+        public StoreService(IStoreRepository storeRepository, 
+            IRepository<Category> categoryRepository, 
+            IRepository<Product> productRepository, 
+            IRepository<Stock> stockRepository, 
+            IRepository<WorkingDays> workingDaysRepository, 
+            IRepository<Voucher> voucherRepository,
+            IRepository<VoucherConcrete> voucherConcreteRepository,
+            IRepository<VoucherStrategy> voucherStrategyRepository)
         {
             _storeRepository = storeRepository;
             _categoryRepository = categoryRepository;
             _productRepository = productRepository;
             _stockRepository = stockRepository;
             _workingDaysRepository = workingDaysRepository;
-        }
-        public IEnumerable<Store> GetStoresByDate(DateTime date)
-        {
-            throw new NotImplementedException();
+            _voucherRepository = voucherRepository;
+            _voucherConcreteRepository = voucherConcreteRepository;
+            _voucherStrategyRepository = voucherStrategyRepository;
         }
 
-        public Task<IEnumerable<Store>> GetStoresByDateAsync(DateTime date)
+        public async Task<IEnumerable<Store>> GetStoresByDateAsync(DateTime date)
         {
-            throw new NotImplementedException();
+            var stores = await _storeRepository.GetAsync();
+            var response = new List<Store>();
+            foreach (var store in stores)
+            {
+                var week = store.WorkingDay.GetCurrentWorkingWeek();
+
+                if (week.Contains(date.DayOfWeek.ToString()) && (store.WorkingDay.TimeFrom <= date.TimeOfDay) && (store.WorkingDay.TimeTo >= date.TimeOfDay))
+                {
+                    response.Add(store);
+                }
+            }
+
+            return response;
         }
 
         public async Task SetupAsync()
@@ -36,6 +59,9 @@ namespace Coco.Services.Services
             var productsRemove = await _productRepository.GetAsync();
             var storeRemove = await _storeRepository.GetAsync();
             var workingDaysRemove = await _workingDaysRepository.GetAsync();
+            var vouchersRemove = await _voucherRepository.GetAsync();
+            var vouchersStrategyRemove = await _voucherStrategyRepository.GetAsync();
+            var vouchersConcreteRemove = await _voucherConcreteRepository.GetAsync();
 
             foreach (var store in storeRemove)
             {
@@ -58,6 +84,14 @@ namespace Coco.Services.Services
                     await _categoryRepository.DeleteAsync(category.Id);
                 }
                 await _productRepository.DeleteAsync(product.Id);
+            }
+
+            foreach (var voucher in vouchersRemove)
+            {
+                var strategy = voucher.VoucherConcrete.VoucherStrategy;
+
+                if (strategy is not null)
+                    await _voucherStrategyRepository.DeleteAsync(strategy.Id);
             }
 
             //Categories and Products
@@ -156,7 +190,7 @@ namespace Coco.Services.Services
                  },
                  new Store()
                  {
-                     Name = "COCO Mail",
+                     Name = "COCO Mall",
                      Address = "La Plata Calle 7",
                      Phone = "2214693454",
                      Stocks = new List<Stock>() {
@@ -173,6 +207,103 @@ namespace Coco.Services.Services
                     },
                      WorkingDay = new WorkingDays() { Monday = true, Tuesday = true, Wednesday = true, Thursday = true, Friday = false, Saturday = false, Sunday = false, TimeFrom = TimeSpan.Parse("6:00:00"), TimeTo = TimeSpan.Parse("19:00:00") }
                  }
+            });
+
+            //Vaucher...
+            var stores = await _storeRepository.GetAsync();
+
+            await _voucherRepository.AddRangeAsync(new List<Voucher>()
+            {
+                new Voucher()
+                {
+                    Code = "COCO1V1F8XOG1MZZ",
+                    Store = stores.First(x => x.Name == "COCO Bay"),
+                    VoucherConcrete = new VoucherConcrete()
+                    {
+                        VoucherStrategy = new VoucherStrategy()
+                        {
+                            CodeStrategy = "STRATEGY01",
+                            DiscountStrategy = $"[percentage]% off on [day1] and [day2]",
+                            DiscountProductsOrCategories = "on [category] products",
+                        },
+                        DiscountStrategy = "[20]% off on [Wednesdays] and [Thursdays]",
+                        DateFrom = new DateTime(2022, 1, 27),
+                        DateTo = new DateTime(2022, 2, 13),
+                        DiscountProductsOrCategories = "on [Cleaning] products"
+                    },
+                },
+                new Voucher()
+                {
+                    Code = "COCOKCUD0Z9LUKBN",
+                    Store = stores.First(x => x.Name == "COCO Bay"),
+                    VoucherConcrete = new VoucherConcrete()
+                    {
+                        VoucherStrategy = new VoucherStrategy()
+                        {
+                            CodeStrategy = "STRATEGY02",
+                            DiscountStrategy = $"Pay [payNumberItem] take [takeNumberItem] ",
+                            DiscountProductsOrCategories = "on [product] on up to [units] units",
+                        },
+                        DiscountStrategy = "Pay [2] take [3] ",
+                        DiscountProductsOrCategories = "on ['Windmill Cookies'] on up to [6] units",
+                        DateFrom = new DateTime(2022, 1, 24),
+                        DateTo = new DateTime(2022, 2, 6),
+                    },
+                },
+                new Voucher()
+                {
+                    Code = "COCOG730CNSG8ZVX",
+                    Store = stores.First(x => x.Name == "COCO Mall"),
+                    VoucherConcrete = new VoucherConcrete()
+                    {
+                        VoucherStrategy = new VoucherStrategy()
+                        {
+                            CodeStrategy = "STRATEGY03",
+                            DiscountStrategy = $"[percentage]% off ",
+                            DiscountProductsOrCategories = "on [category1] and [category2]",
+                        },
+                        DiscountStrategy = "[10]% off ",
+                        DiscountProductsOrCategories = "on [Bathroom] and [Sodas]",
+                        DateFrom = new DateTime(2022, 1, 31),
+                        DateTo = new DateTime(2022, 2, 9),
+                    },
+                },
+                new Voucher()
+                {
+                    Code = "COCO2O1USLC6QR22",
+                    Store = stores.First(x => x.Name == "COCO Downtown"),
+                    VoucherConcrete = new VoucherConcrete()
+                    {
+                        VoucherStrategy = new VoucherStrategy()
+                        {
+                            CodeStrategy = "STRATEGY04",
+                            DiscountStrategy = $"[percentage]% off on the second unit (of the same product),",
+                            DiscountProductsOrCategories = "on [product1], [product2] and [product3]",
+                        },
+                        DiscountStrategy = "[30]% off on the second unit (of the same product),",
+                        DiscountProductsOrCategories = "on ['Nuka-Cola'], ['Slurm'] and ['Diet Slurm']",
+                        DateFrom = new DateTime(2022, 2, 1),
+                        DateTo = new DateTime(2022, 2, 28),
+                    },
+                },
+                new Voucher()
+                {
+                    Code = "COCO0FLEQ287CC05",
+                    Store = stores.First(x => x.Name == "COCO Downtown"),
+                    VoucherConcrete = new VoucherConcrete()
+                    {
+                        VoucherStrategy = new VoucherStrategy()
+                        {
+                            CodeStrategy = "STRATEGY05",
+                            DiscountStrategy = $"[percentage]% off on the second unit (of the same product),",
+                            DiscountProductsOrCategories = "on [product1], only on [day]",
+                        },
+                        DiscountStrategy = "[30]% off on the second unit (of the same product),",
+                        DiscountProductsOrCategories = "on ['Nuka-Cola'], only on [Mondays]",
+                        DateFrom = new DateTime(2022, 2, 1),
+                        DateTo = new DateTime(2022, 2, 15),
+                    },
+                },
             });
         }
     }
