@@ -1,0 +1,158 @@
+[
+    {
+      "Code": "CAT01",
+      "Description": "Sodas",
+      "products": [
+        {
+		  "Id" : "B0425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD01",
+          "Description": "Cold Ice Tea",
+          "Amount": 100.0
+        },
+        {
+		  "Id" :"AD425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD02",
+          "Description": "Coffee flavoured milk",
+          "Amount": 50.0
+        },
+        {
+		  "Id" : "A4425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD03",
+          "Description": "Nuke-Cola",
+          "Amount": 70.0
+        },
+        {
+			"Id" : "9F425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD04",
+          "Description": "Sprute",
+          "Amount": 40.0
+        },
+        {
+			"Id" : "AC425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD05",
+          "Description": "Slurm",
+          "Amount": 90.0
+        },
+        {
+			"Id" : "A3425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD06",
+          "Description": "Diet Slurm",
+          "Amount": 110.0
+        }
+      ]
+    },
+    {
+      "Code": "CAT02",
+      "Description": "Cleaning",
+      "products": [
+        {
+			"Id" : "A5425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD07",
+          "Description": "Atlantis detergent",
+          "Amount": 100.0
+        },
+        {
+			"Id" : "9C425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD08",
+          "Description": "Virulanita",
+          "Amount": 50.0
+        },
+        {
+			"Id" : "9D425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD09",
+          "Description": "Sponge, Bob",
+          "Amount": 70.0
+        },
+        {
+			"Id" : "AB425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD10",
+          "Description": "Generic mop",
+          "Amount": 40.0
+        }
+      ]
+    },
+    {
+      "Code": "CAT03",
+      "Description": "Food",
+      "products": [
+        {
+			"Id" : "AE425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD11",
+          "Description": "Salsa Cookies",
+          "Amount": 100.0
+        },
+        {
+			"Id" : "A0425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD12",
+          "Description": "Windmill Cookies",
+          "Amount": 50.0
+        },
+        {
+			"Id" : "A1425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD13",
+          "Description": "Garlic-o-bread 2000",
+          "Amount": 70.0
+        },
+        {
+			"Id" : "A6425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD14",
+          "Description": "LACTEL bread",
+          "Amount": 40.0
+        },
+        {
+			"Id" : "A8425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD15",
+          "Description": "Ravioloches x12",
+          "Amount": 90.0
+        },
+        {
+			"Id" : "AA425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD16",
+          "Description": "Ravioloches x48",
+          "Amount": 110.0
+        },
+        {
+			"Id" : "A9425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD17",
+          "Description": "Milanga ganga",
+          "Amount": 110.0
+        },
+        {
+			"Id" : "AF425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD18",
+          "Description": "Milanga ganga napo",
+          "Amount": 110.0
+        }
+      ]
+    },
+    {
+      "Code": "CAT04",
+      "Description": "Bathroom",
+      "products": [
+        {
+			"Id" : "A7425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD19",
+          "Description": "Pure steel toilet paper",
+          "Amount": 100.0
+        },
+        {
+			"Id" : "B1425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD20",
+          "Description": "Generic soap",
+          "Amount": 50.0
+        },
+        {
+			"Id" : "A2425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD21",
+          "Description": "PANTONE shampoo",
+          "Amount": 70.0
+        },
+        {
+			"Id" : "9E425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "Code": "COD22",
+          "Description": "Cabbagegate toothpaste",
+          "Amount": 40.0
+        }
+      ]
+    }
+  ]

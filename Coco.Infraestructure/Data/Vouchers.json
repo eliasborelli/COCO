@@ -1,0 +1,87 @@
+[
+    {
+      "StoreId": "00000001-1CD2-EC11-B1DC-FC017C8DBD98",
+      "Code": "COCO1V1F8XOG1MZZ",
+      "VoucherConcrete": {
+        "VoucherStrategy": {
+          "CodeStrategy": "STRATEGY01",
+          "DiscountStrategy": "[percentage]% off on [day1] and [day2]",
+          "DiscountProductsOrCategories": "on [category] products",
+          "DateFrom": null,
+          "DateTo": null
+        },
+        "DiscountStrategy": "[20]% off on [Wednesdays] and [Thursdays]",
+        "DiscountProductsOrCategories": "on [Cleaning] products",
+        "DateFrom": "2022-01-27T00:00:00",
+        "DateTo": "2022-02-13T00:00:00"
+      }
+    },
+    {
+      "StoreId": "00000001-1CD2-EC11-B1DC-FC017C8DBD98",
+      "Code": "COCOKCUD0Z9LUKBN",
+      "VoucherConcrete": {
+        "VoucherStrategy": {
+          "CodeStrategy": "STRATEGY02",
+          "DiscountStrategy": "Pay [payNumberItem] take [takeNumberItem] ",
+          "DiscountProductsOrCategories": "on [product] on up to [units] units",
+          "DateFrom": null,
+          "DateTo": null
+        },
+        "DiscountStrategy": "Pay [2] take [3] ",
+        "DiscountProductsOrCategories": "on ['Windmill Cookies'] on up to [6] units",
+        "DateFrom": "2022-01-24T00:00:00",
+        "DateTo": "2022-02-06T00:00:00"
+      }
+    },
+    {
+      "StoreId": "00000002-1CD2-EC11-B1DC-FC017C8DBD98",
+      "Code": "COCOG730CNSG8ZVX",
+      "VoucherConcrete": {
+        "VoucherStrategy": {
+          "CodeStrategy": "STRATEGY03",
+          "DiscountStrategy": "[percentage]% off ",
+          "DiscountProductsOrCategories": "on [category1] and [category2]",
+          "DateFrom": null,
+          "DateTo": null
+        },
+        "DiscountStrategy": "[10]% off ",
+        "DiscountProductsOrCategories": "on [Bathroom] and [Sodas]",
+        "DateFrom": "2022-01-31T00:00:00",
+        "DateTo": "2022-02-09T00:00:00"
+      }
+    },
+    {
+      "StoreId": "00000000-1CD2-EC11-B1DC-FC017C8DBD98",
+      "Code": "COCO2O1USLC6QR22",
+      "VoucherConcrete": {
+        "VoucherStrategy": {
+          "CodeStrategy": "STRATEGY04",
+          "DiscountStrategy": "[percentage]% off on the second unit (of the same product),",
+          "DiscountProductsOrCategories": "on [product1], [product2] and [product3]",
+          "DateFrom": null,
+          "DateTo": null
+        },
+        "DiscountStrategy": "[30]% off on the second unit (of the same product),",
+        "DiscountProductsOrCategories": "on ['Nuka-Cola'], ['Slurm'] and ['Diet Slurm']",
+        "DateFrom": "2022-02-01T00:00:00",
+        "DateTo": "2022-02-28T00:00:00"
+      }
+    },
+    {
+      "StoreId": "00000000-1CD2-EC11-B1DC-FC017C8DBD98",
+      "Code": "COCO0FLEQ287CC05",
+      "VoucherConcrete": {
+        "VoucherStrategy": {
+          "CodeStrategy": "STRATEGY05",
+          "DiscountStrategy": "[percentage]% off on the second unit (of the same product),",
+          "DiscountProductsOrCategories": "on [product1], only on [day]",
+          "DateFrom": null,
+          "DateTo": null
+        },
+        "DiscountStrategy": "[30]% off on the second unit (of the same product),",
+        "DiscountProductsOrCategories": "on ['Nuka-Cola'], only on [Mondays]",
+        "DateFrom": "2022-02-01T00:00:00",
+        "DateTo": "2022-02-15T00:00:00"
+      }
+    }
+]

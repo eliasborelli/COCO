@@ -11,7 +11,6 @@ namespace Coco.Infraestructure.EntityConfigurations
         {
             builder.ToTable("Products");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).HasDefaultValueSql("newsequentialid()");
             builder.Property(x => x.Amount).IsRequired(false).HasPrecision(18, 2);
         }
     }

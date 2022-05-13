@@ -1,0 +1,211 @@
+[
+    {
+      "Id": "00000000-1CD2-EC11-B1DC-FC017C8DBD98",
+      "Name": "COCO Downtown",
+      "Address": "La Plata Calle 13",
+      "Phone": "2214693454",
+      "Stocks": [
+        {
+          "ProductId": "B0425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 5
+        },
+        {
+          "ProductId": "AD425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 7
+        },
+        {
+          "ProductId": "A4425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 3
+        },
+        {
+          "ProductId": "A3425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 2
+        },
+        {
+          "ProductId": "AE425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 4
+        },
+        {
+          "ProductId": "A0425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 7
+        },
+        {
+          "ProductId": "A1425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 2
+        },
+        {
+          "ProductId": "A6425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 15
+        },
+        {
+          "ProductId": "B1425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 12
+        },
+        {
+          "ProductId": "A2425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 11
+        },
+        {
+          "ProductId": "9E425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 10
+        }
+      ],
+	  "WorkingDay" : {
+					  "monday": true,
+					  "tuesday": true,
+					  "wednesday": true,
+					  "thursday": true,
+					  "friday": true,
+					  "saturday": false,
+					  "sunday": false,
+					  "timeFrom": "8:00:00",
+					  "timeTo": "20:00:00"
+					}
+    },
+    {
+      "Id": "00000001-1CD2-EC11-B1DC-FC017C8DBD98",
+      "Name": "COCO Bay",
+      "Address": "La Plata Calle 2",
+      "Phone": "2214693454",
+      "Stocks": [
+        {
+          "ProductId": "B0425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 5
+        },
+        {
+          "ProductId": "AD425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 7
+        },
+        {
+          "ProductId": "A4425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 3
+        },
+        {
+          "ProductId": "9F425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 2
+        },
+        {
+          "ProductId": "AC425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 2
+        },
+        {
+          "ProductId": "A5425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 6
+        },
+        {
+          "ProductId": "9C425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 1
+        },
+        {
+          "ProductId": "9D425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 8
+        },
+        {
+          "ProductId": "AB425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 9
+        },
+        {
+          "ProductId": "AE425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 4
+        },
+        {
+          "ProductId": "A0425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 7
+        },
+        {
+          "ProductId": "A1425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 2
+        },
+        {
+          "ProductId": "A6425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 15
+        },
+        {
+          "ProductId": "A8425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 12
+        },
+        {
+          "ProductId": "AA425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 12
+        },
+        {
+          "ProductId": "A9425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 12
+        },
+        {
+          "ProductId": "AF425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 12
+        }
+      ],	  
+	  "WorkingDay" : {
+					  "monday": true,
+					  "tuesday": true,
+					  "wednesday": true,
+					  "thursday": true,
+					  "friday": true,
+					  "saturday": false,
+					  "sunday": true,
+					  "timeFrom": "5:00:00",
+					  "timeTo": "15:00:00"
+					}
+    },
+    {
+      "Id": "00000002-1CD2-EC11-B1DC-FC017C8DBD98",
+      "Name": "COCO Mall",
+      "Address": "La Plata Calle 7",
+      "Phone": "2214693454",
+      "Stocks": [
+        {
+          "ProductId": "B0425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 5
+        },
+        {
+          "ProductId": "AD425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 7
+        },
+        {
+          "ProductId": "A4425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 3
+        },
+        {
+          "ProductId": "9F425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 2
+        },
+        {
+          "ProductId": "AC425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 2
+        },
+        {
+          "ProductId": "A3425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 2
+        },
+        {
+          "ProductId": "A7425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 12
+        },
+        {
+          "ProductId": "B1425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 12
+        },
+        {
+          "ProductId": "A2425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 11
+        },
+        {
+          "ProductId": "9E425CA6-1CD2-EC11-B1DC-FC017C8DBD98",
+          "CurrentStock": 10
+        }
+      ],	  
+	  "WorkingDay" : {
+					  "monday": true,
+					  "tuesday": true,
+					  "wednesday": true,
+					  "thursday": true,
+					  "friday": false,
+					  "saturday": false,
+					  "sunday": false,
+					  "timeFrom": "6:00:00",
+					  "timeTo": "19:00:00"
+					}
+    }
+]
