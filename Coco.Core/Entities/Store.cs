@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Coco.Core.Entities
 {
-    public class Store : BaseEntity
+    public class Store
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }

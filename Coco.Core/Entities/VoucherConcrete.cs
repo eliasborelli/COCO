@@ -8,6 +8,7 @@ namespace Coco.Core.Entities
 {
     public class VoucherConcrete : BaseEntity
     {
+        public Guid VoucherId { get; set; }
         public virtual VoucherStrategy VoucherStrategy { get; set; }
         public string DiscountStrategy { get; set; }
         public string DiscountProductsOrCategories { get; set; }
