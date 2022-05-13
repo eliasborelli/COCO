@@ -5,11 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace Coco.API.Controllers
 {
     [Route("api/stores")]
-    [ApiController]
-    public class StoresController : ControllerBase
+    public class StoresController : CocoApiBaseController<StoresController>
     {
         private readonly IStoreService _storeService;
-        public StoresController(IStoreService storeService)
+        public StoresController(IStoreService storeService, ILogger<StoresController> logger) : base(logger)
         {
             _storeService = storeService;
         }

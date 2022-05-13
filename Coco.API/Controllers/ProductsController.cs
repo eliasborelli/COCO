@@ -1,15 +1,15 @@
-﻿using Coco.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Coco.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Coco.API.Controllers
 {
     [Route("api/products")]
-    [ApiController]
-    public class ProductsController : ControllerBase
+    public class ProductsController : CocoApiBaseController<ProductsController>
     {
         private readonly IProductService _productService;
-        public ProductsController(IProductService productService)
+        private readonly IMapper _mapper;
+        public ProductsController(IProductService productService, ILogger<ProductsController> logger) : base(logger)
         {
             _productService = productService;
         }
@@ -19,8 +19,5 @@ namespace Coco.API.Controllers
         {
             return Ok(await _productService.GetAllAvailableProducts());
         }
-
-
-
     }
 }
