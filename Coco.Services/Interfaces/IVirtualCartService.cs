@@ -1,5 +1,6 @@
 ﻿using Coco.Core.Entities;
 using Coco.Core.Models.Request;
+using Coco.Infraestructure.Commons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace Coco.Services.Interfaces
 {
     public interface IVirtualCartService
     {
-        Task<VirtualCart> CreateAsync(VirtualCartFilter virtualCartFilter);
-        Task RemoveAsync(string id);
-        Task<VirtualCart> ApplyVourcher(string code, string nameStore);
+        Task<Result<VirtualCart>> CreateAsync(VirtualCartFilter virtualCartFilter);
+        Task<Result> RemoveAsync(string id);
+        Task<Result<VirtualCart>> ApplyVourcher(string code, string nameStore);
     }
 }

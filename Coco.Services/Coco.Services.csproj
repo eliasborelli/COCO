@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Coco.Core\Coco.Core.csproj" />
+    <ProjectReference Include="..\Coco.Infraestructure\Coco.Infraestructure.csproj" />
   </ItemGroup>
 
 </Project>

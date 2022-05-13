@@ -1,6 +1,7 @@
 ﻿using Coco.Core.Entities;
 using Coco.Core.Interfaces;
 using Coco.Core.Models.Request;
+using Coco.Infraestructure.Commons;
 using Coco.Services.Interfaces;
 
 namespace Coco.Services.Services
@@ -13,17 +14,17 @@ namespace Coco.Services.Services
             _virtualCartRepository = virtualCartRepository;
         }
 
-        public Task<VirtualCart> ApplyVourcher(string code, string nameStore)
+        public async Task<Result<VirtualCart>> ApplyVourcher(string code, string nameStore)
         {
             throw new NotImplementedException();
         }
 
-        public Task<VirtualCart> CreateAsync(VirtualCartFilter virtualCartFilter)
+        public async Task<Result<VirtualCart>> CreateAsync(VirtualCartFilter virtualCartFilter)
         {
             throw new NotImplementedException();
         }
 
-        public Task RemoveAsync(string id)
+        public async Task<Result> RemoveAsync(string id)
         {
             throw new NotImplementedException();
         }

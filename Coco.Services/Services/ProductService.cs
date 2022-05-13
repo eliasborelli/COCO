@@ -2,6 +2,7 @@
 using Coco.Core.Interfaces;
 using Coco.Core.Models.Request;
 using Coco.Core.Models.Response;
+using Coco.Infraestructure.Commons;
 using Coco.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace Coco.Services.Services
             _storeRepository = storeRepository;
         }
 
-        public async Task<IEnumerable<ProductModelResponse>> GetAllAvailableProducts()
+        public async Task<Result<IEnumerable<ProductModelResponse>>> GetAllAvailableProducts()
         {
             var stock = await _stockRepository.GetAsync();
 
@@ -31,26 +32,26 @@ namespace Coco.Services.Services
                 .Select(prod => new ProductModelResponse()
                 {
                     Description = prod.First().Product.Description,
-                    TotalStock = prod.Sum(x=> x.CurrentStock),
+                    TotalStock = prod.Sum(x => x.CurrentStock),
                     Amount = prod.First().Product.Amount
                 }).ToList();
 
-            return response;
+            return Result.Success<IEnumerable<ProductModelResponse>>(response);
         }
 
-        public async Task<IEnumerable<ProductModelResponse>> GetAllProductsByStore(string name)
+        public async Task<Result<IEnumerable<ProductModelResponse>>> GetAllProductsByStore(string name)
         {
             var store = await _storeRepository.GetFirstAsync(x => x.Name.Contains(name));
 
-            return store.Stocks.Select(prod => new ProductModelResponse()
+            return Result.Success<IEnumerable<ProductModelResponse>>(store.Stocks.Select(prod => new ProductModelResponse()
             {
                 Description = prod.Product.Description,
                 Amount = prod.Product.Amount,
                 TotalStock = prod.CurrentStock
-            });
+            }));
         }
 
-        public async Task<Product> GetProductByFilter(ProductFilter filter)
+        public async Task<Result<Product>> GetProductByFilter(ProductFilter filter)
         {
             Product product = new Product();
 
@@ -58,7 +59,7 @@ namespace Coco.Services.Services
 
             var stock = store.Stocks.FirstOrDefault(prod => prod.Product.Description.Contains(filter.Description));
 
-            return (stock is not null) ? stock.Product : product;
+            return Result.Success<Product>(product);
         }
     }
 }

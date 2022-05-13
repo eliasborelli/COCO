@@ -1,5 +1,6 @@
 ﻿using Coco.Core.Entities;
 using Coco.Core.Interfaces;
+using Coco.Infraestructure.Commons;
 using Coco.Services.Interfaces;
 using Newtonsoft.Json;
 
@@ -23,7 +24,7 @@ namespace Coco.Services.Services
             _voucherRepository = voucherRepository;
         }
 
-        public async Task<IEnumerable<Store>> GetStoresByDateAsync(DateTime date)
+        public async Task<Result<IEnumerable<Store>>> GetStoresByDateAsync(DateTime date)
         {
             var stores = await _storeRepository.GetAsync();
             var response = new List<Store>();
@@ -36,11 +37,10 @@ namespace Coco.Services.Services
                     response.Add(store);
                 }
             }
-
-            return response;
+            return Result.Success<IEnumerable<Store>>(response);
         }
 
-        public async Task SetupAsync()
+        public async Task<Result> SetupAsync()
         {
             //Remove all
             foreach (var store in await _storeRepository.GetAsync())
@@ -62,6 +62,8 @@ namespace Coco.Services.Services
             await _categoryRepository.AddRangeAsync(JsonConvert.DeserializeObject<List<Category>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\CategoriesAndProducts.json")));
             await _storeRepository.AddRangeAsync(JsonConvert.DeserializeObject<List<Store>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\StoresAndStocks.json")));
             await _voucherRepository.AddRangeAsync(JsonConvert.DeserializeObject<List<Voucher>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\Vouchers.json")));
+
+            return Result.Success();
         }
     }
 }
