@@ -13,6 +13,7 @@ namespace Coco.Core.Entities
         public string Address { get; set; }
         public string Phone { get; set; }
         public virtual ICollection<Stock> Stocks { get; set; }
+        public virtual ICollection<Voucher> Vouchers { get; set; }
         public virtual WorkingDays WorkingDay { get; set; }
     }
 }
