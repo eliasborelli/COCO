@@ -28,7 +28,7 @@ namespace Coco.Services.Services
         {
             var stock = await _stockRepository.GetAsync();
 
-            var response = stock.GroupBy(prod => new { prod.Product.Description })
+            var response = stock.Where(x => x.CurrentStock > 0).GroupBy(prod => new { prod.Product.Description })
                 .Select(prod => new ProductModelResponse()
                 {
                     Description = prod.First().Product.Description,
@@ -41,9 +41,12 @@ namespace Coco.Services.Services
 
         public async Task<Result<IEnumerable<ProductModelResponse>>> GetAllProductsByStore(string name)
         {
-            var store = await _storeRepository.GetFirstAsync(x => x.Name.Contains(name));
+            var store = await _storeRepository.GetFirstAsync(x => x.Name.Trim().Contains(name.Trim()));
 
-            return Result.Success<IEnumerable<ProductModelResponse>>(store.Stocks.Select(prod => new ProductModelResponse()
+            if (store == null)
+                return Result.Failed<IEnumerable<ProductModelResponse>>("The store is not exists");
+
+            return Result.Success<IEnumerable<ProductModelResponse>>(store.Stocks.Where(x => x.CurrentStock > 0).Select(prod => new ProductModelResponse()
             {
                 Description = prod.Product.Description,
                 Amount = prod.Product.Amount,
@@ -53,11 +56,20 @@ namespace Coco.Services.Services
 
         public async Task<Result<Product>> GetProductByFilter(ProductFilter filter)
         {
-            Product product = new Product();
+            var product = await _productRepository.GetFirstAsync(x => x.Description.Trim().Contains(filter.ProductDescription.Trim()));
 
-            var store = await _storeRepository.GetFirstAsync(x => x.Name.Contains(filter.store));
+            if (product == null)
+                return Result.Failed<Product>("The product is not exists");
 
-            var stock = store.Stocks.FirstOrDefault(prod => prod.Product.Description.Contains(filter.Description));
+            var store = await _storeRepository.GetFirstAsync(x => x.Name.Trim().Contains(filter.StoreName.Trim()));
+
+            if (store == null)
+                return Result.Failed<Product>("The store is not exists");
+
+            var response = store.Stocks.FirstOrDefault(x => x.ProductId == product.Id && x.CurrentStock > 0);
+
+            if (response == null)
+                return Result.Failed<Product>("Product not available");
 
             return Result.Success<Product>(product);
         }

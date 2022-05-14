@@ -1,5 +1,6 @@
 ﻿using Coco.Core.Entities;
 using Coco.Core.Interfaces;
+using Coco.Core.Models.Response;
 using Coco.Infraestructure.Commons;
 using Coco.Services.Interfaces;
 using Newtonsoft.Json;
@@ -24,7 +25,7 @@ namespace Coco.Services.Services
             _voucherRepository = voucherRepository;
         }
 
-        public async Task<Result<IEnumerable<Store>>> GetStoresByDateAsync(DateTime date)
+        public async Task<Result<IEnumerable<Store>>> GetStoresByDate(DateTime date)
         {
             var stores = await _storeRepository.GetAsync();
             var response = new List<Store>();
@@ -40,7 +41,7 @@ namespace Coco.Services.Services
             return Result.Success<IEnumerable<Store>>(response);
         }
 
-        public async Task<Result> SetupAsync()
+        public async Task<Result> Setup()
         {
             //Remove all
             foreach (var store in await _storeRepository.GetAsync())
@@ -64,6 +65,70 @@ namespace Coco.Services.Services
             await _voucherRepository.AddRangeAsync(JsonConvert.DeserializeObject<List<Voucher>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\Vouchers.json")));
 
             return Result.Success();
+        }
+
+        public async Task<Result<IEnumerable<StoreResponse>>> GetSetupData()
+        {
+            var stores = await _storeRepository.GetAsync();
+
+            return Result.Success<IEnumerable<StoreResponse>>(stores.Select(x => new StoreResponse()
+            {
+                Address = x.Address,
+                Name = x.Name,
+                Phone = x.Phone,
+                StoreId = x.Id,
+                WorkingDay = new WorkingDaysResponse()
+                {
+                    WorkingDaysId = x.WorkingDay.Id,
+                    Monday = x.WorkingDay.Monday,
+                    Tuesday = x.WorkingDay.Tuesday,
+                    Wednesday = x.WorkingDay.Wednesday,
+                    Thursday = x.WorkingDay.Thursday,
+                    Friday = x.WorkingDay.Friday,
+                    Saturday = x.WorkingDay.Saturday,
+                    Sunday = x.WorkingDay.Sunday,
+                    TimeFrom = x.WorkingDay.TimeFrom,
+                    TimeTo = x.WorkingDay.TimeTo
+                },
+                Stocks = x.Stocks.Select(stock => new StockResponse()
+                {
+                    CurrentStock = stock.CurrentStock,
+                    StockId = stock.Id,
+                    Product = new ProductResponse()
+                    {
+                        ProductId = stock.Product.Id,
+                        Description = stock.Product.Description,
+                        Code = stock.Product.Code,
+                        Amount = stock.Product.Amount,
+                        Categories = stock.Product.Categories.Select(category => new CategoryResponse()
+                        {
+                            CategoryId = category.Id,
+                            Code = category.Code,
+                            Description = category.Description,
+                        }).ToList()
+                    }
+                }).ToList(),
+                Vouchers = x.Vouchers.Select(voucher => new VoucherResponse()
+                {
+                    VoucherId = voucher.Id,
+                    Code = voucher.Code,
+                    VoucherConcrete = new VoucherConcreteResponse()
+                    {
+                        VoucherConcreteId = voucher.VoucherConcrete.Id,
+                        DiscountProductsOrCategories = voucher.VoucherConcrete.DiscountProductsOrCategories,
+                        DiscountStrategy = voucher.VoucherConcrete.DiscountStrategy,
+                        DateFrom = voucher.VoucherConcrete.DateFrom,
+                        DateTo = voucher.VoucherConcrete.DateTo,
+                        VoucherStrategy = new VoucherStrategyResponse()
+                        {
+                            VoucherStrategyId = voucher.VoucherConcrete.VoucherStrategy.Id,
+                            DiscountProductsOrCategories = voucher.VoucherConcrete.VoucherStrategy.DiscountProductsOrCategories,
+                            CodeStrategy = voucher.VoucherConcrete.VoucherStrategy.CodeStrategy,
+                            DiscountStrategy = voucher.VoucherConcrete.VoucherStrategy.DiscountStrategy,
+                        }
+                    }
+                }).ToList()
+            }));
         }
     }
 }

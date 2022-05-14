@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Coco.Infraestructure.Commons
 {
@@ -22,11 +22,11 @@ namespace Coco.Infraestructure.Commons
     [Serializable]
     public class OperationResponse
     {
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string Message { get; protected set; }
         public string Code { get; protected set; }
 
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<string> Errors { get; protected set; }
 
         public OperationResponse(string code, string message)
