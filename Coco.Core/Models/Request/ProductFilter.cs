@@ -2,7 +2,7 @@
 {
     public class ProductFilter
     {
-        public string Description { get; set; }
-        public string store { get; set; }
+        public string ProductDescription { get; set; }
+        public string StoreName { get; set; }
     }
 }
