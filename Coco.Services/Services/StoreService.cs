@@ -5,6 +5,7 @@ using Coco.Infraestructure.Commons;
 using Coco.Services.Interfaces;
 using Newtonsoft.Json;
 
+
 namespace Coco.Services.Services
 {
     public class StoreService : IStoreService
@@ -12,12 +13,12 @@ namespace Coco.Services.Services
         private readonly IStoreRepository _storeRepository;
         private readonly IRepository<Category> _categoryRepository;
         private readonly IRepository<Product> _productRepository;
-        private readonly IRepository<Voucher> _voucherRepository;
+        private readonly IRepository<Coco.Core.Entities.Voucher> _voucherRepository;
 
         public StoreService(IStoreRepository storeRepository,
             IRepository<Category> categoryRepository,
             IRepository<Product> productRepository,
-            IRepository<Voucher> voucherRepository)
+            IRepository<Coco.Core.Entities.Voucher> voucherRepository)
         {
             _storeRepository = storeRepository;
             _categoryRepository = categoryRepository;
@@ -62,7 +63,7 @@ namespace Coco.Services.Services
             //Populate Tables
             await _categoryRepository.AddRangeAsync(JsonConvert.DeserializeObject<List<Category>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\CategoriesAndProducts.json")));
             await _storeRepository.AddRangeAsync(JsonConvert.DeserializeObject<List<Store>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\StoresAndStocks.json")));
-            await _voucherRepository.AddRangeAsync(JsonConvert.DeserializeObject<List<Voucher>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\Vouchers.json")));
+            await _voucherRepository.AddRangeAsync(JsonConvert.DeserializeObject<List<Coco.Core.Entities.Voucher>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"Data\Vouchers.json")));
 
             return Result.Success();
         }
@@ -129,6 +130,15 @@ namespace Coco.Services.Services
                     }
                 }).ToList()
             }));
+        }
+
+        public async Task<Result<Store>> Exists(string name)
+        {
+            var store = await _storeRepository.GetFirstAsync(x => x.Name.Trim().Contains(name.Trim()));
+
+            if (store == null)
+                return Result.Failed<Store>("The store is not exists");
+            return Result.Success<Store>(store);
         }
     }
 }

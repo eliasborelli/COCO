@@ -10,5 +10,6 @@ namespace Coco.Services.Interfaces
         Task<Result<IEnumerable<ProductModelResponse>>> GetAllAvailableProducts();
         Task<Result<Product>> GetProductByFilter(ProductFilter filter);
         Task<Result<IEnumerable<ProductModelResponse>>> GetAllProductsByStore(string name);
+        Task<Result> Exists(string code = "", string name = "");
     }
 }

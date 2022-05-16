@@ -9,5 +9,6 @@ namespace Coco.Services.Interfaces
         Task<Result<IEnumerable<Store>>> GetStoresByDate(DateTime date);
         Task<Result> Setup();
         Task<Result<IEnumerable<StoreResponse>>> GetSetupData();
+        Task<Result<Store>> Exists(string name);
     }
 }
