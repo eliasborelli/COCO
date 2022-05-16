@@ -14,17 +14,23 @@ namespace Coco.API.Mappings
             CreateMap<ProductModelResponse, ProductStockResponseDTO>();
 
 
-
-
-
-
-
             CreateMap<ProductFilterRequestDTO, ProductFilter>();
 
             CreateMap<Category, CategoryResponseDTO>();
             CreateMap<Product, ProductResponseDTO>();
 
             CreateMap<Store, StoreResponseDTO>();
+
+            CreateMap<VirtualCartFilterRequestDTO, VirtualCartFilter>();
+
+            CreateMap<VirtualCartEditFilterRequestDTO, VirtualCartEditFilter>();
+
+            CreateMap<VoucherFilterRequestDTO, VoucherFilter>();
+
+            CreateMap<VirtualProductFilterRequestDTO, VirtualProductFilter>();
+
+            CreateMap<VirtualCartRemoveFilterRequestDTO, VirtualCartProductsRemoveFilter>();
+            
         }
     }
 }

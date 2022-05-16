@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Coco.Core.Entities
+namespace Coco.Core.Models.Response
 {
-    public class VirtualProductCart : BaseEntity
+    public class VirtualProductCartResponse
     {
-        public Guid VirtualCartId { get; set; }
-        public virtual Product Product { get; set; }
+        public ProductResponse Product { get; set; }
         public int? Quantity { get; set; }
         public decimal? DiscountAmount { get; set; }
     }

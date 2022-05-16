@@ -1,8 +1,11 @@
+using Coco.Core.Entities;
 using Coco.Core.Interfaces;
 using Coco.Infraestructure.Persistence;
 using Coco.Infraestructure.Repositories;
 using Coco.Services.Interfaces;
 using Coco.Services.Services;
+using Coco.Services.Services.Voucher;
+using Coco.Services.Services.Voucher.VoucherStrategy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -22,6 +25,17 @@ builder.Services.AddTransient<IStoreRepository, StoreRepository>();
 //Services
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<IStoreService, StoreService>();
+builder.Services.AddTransient<IStockService, StockService>();
+builder.Services.AddTransient<IVirtualCartService, VirtualCartService>();
+builder.Services.AddTransient<IVoucherService, VoucherService>();
+
+
+
+builder.Services.AddTransient<Coco.Services.Services.Voucher.IVoucherStrategy, VoucherBetweenCategoriesStrategy>();
+builder.Services.AddTransient<Coco.Services.Services.Voucher.IVoucherStrategy, VoucherBetweenDatesStrategy>();
+builder.Services.AddTransient<Coco.Services.Services.Voucher.IVoucherStrategy, VoucherPayAndTakeStrategy>();
+
+
 
 builder.Services.AddControllers();
 
@@ -56,3 +70,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
