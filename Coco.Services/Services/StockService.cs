@@ -22,6 +22,9 @@ namespace Coco.Services.Services
         }
         public async Task<Result<Store>> GetStockByStore(string name)
         {
+            if (string.IsNullOrEmpty(name))
+                return Result.Failed<Store>("The name is required");
+
             var store = await _storeService.Exists(name);
 
             if (store == null || store.Succeeded is false)

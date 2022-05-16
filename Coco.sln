@@ -5,11 +5,15 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coco.API", "Coco.API\Coco.API.csproj", "{AB2264D7-8E05-49AC-9ABC-A3FEE8C57ABD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coco.Services", "Coco.Services\Coco.Services.csproj", "{2950C49D-D1CB-4D47-8468-0CD71AC07EC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coco.Services", "Coco.Services\Coco.Services.csproj", "{2950C49D-D1CB-4D47-8468-0CD71AC07EC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coco.Core", "Coco.Core\Coco.Core.csproj", "{5A0962A0-21BF-45FF-9748-736FE626BF45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coco.Core", "Coco.Core\Coco.Core.csproj", "{5A0962A0-21BF-45FF-9748-736FE626BF45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coco.Infraestructure", "Coco.Infraestructure\Coco.Infraestructure.csproj", "{852649E4-AA28-4667-8A18-6AB76420D378}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coco.Infraestructure", "Coco.Infraestructure\Coco.Infraestructure.csproj", "{852649E4-AA28-4667-8A18-6AB76420D378}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C6DAF0E5-B691-4D22-9D17-66948B12222E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coco.UnitTests", "Tests\Coco.UnitTests\Coco.UnitTests.csproj", "{8B5EDDE0-316D-4F38-9965-FD7BD0DF6B19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +37,16 @@ Global
 		{852649E4-AA28-4667-8A18-6AB76420D378}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{852649E4-AA28-4667-8A18-6AB76420D378}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{852649E4-AA28-4667-8A18-6AB76420D378}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B5EDDE0-316D-4F38-9965-FD7BD0DF6B19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B5EDDE0-316D-4F38-9965-FD7BD0DF6B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B5EDDE0-316D-4F38-9965-FD7BD0DF6B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B5EDDE0-316D-4F38-9965-FD7BD0DF6B19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8B5EDDE0-316D-4F38-9965-FD7BD0DF6B19} = {C6DAF0E5-B691-4D22-9D17-66948B12222E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A6969CBA-E67D-4583-9C51-894E99DDBA74}

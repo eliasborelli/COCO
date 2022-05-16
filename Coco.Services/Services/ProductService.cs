@@ -60,6 +60,9 @@ namespace Coco.Services.Services
 
         public async Task<Result<IEnumerable<ProductModelResponse>>> GetAllProductsByStore(string name)
         {
+            if (string.IsNullOrEmpty(name))
+                return Result.Failed<IEnumerable<ProductModelResponse>>("The store name is required");
+            
             var store = await _storeRepository.GetFirstAsync(x => x.Name.Trim().Contains(name.Trim()));
 
             if (store == null)
